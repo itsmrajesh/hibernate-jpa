@@ -28,7 +28,21 @@ public class StudentDaoImpl implements StudentDao {
 
 	@Override
 	public Student getStudent(int regno) {
-		return null;
+		Student student = null;
+
+		try (Session session = HibernateUtil.sessionFactory().openSession()) {
+
+			Transaction transaction = session.beginTransaction();
+
+			student = session.get(Student.class, regno);
+
+			transaction.commit();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return student;
 	}
 
 	@Override
@@ -40,6 +54,32 @@ public class StudentDaoImpl implements StudentDao {
 			e.printStackTrace();
 		}
 		return students;
+	}
+
+	@Override
+	public void updateStudent(int regno) {
+		try (Session session = HibernateUtil.sessionFactory().openSession()) {
+			Student student = getStudent(regno);
+			student.setName("M Rajesh");
+			Transaction transaction = session.beginTransaction();
+			session.saveOrUpdate(student);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void deleteStudent(int regno) {
+		try (Session session = HibernateUtil.sessionFactory().openSession()) {
+			Student student = getStudent(regno);
+			Transaction transaction = session.beginTransaction();
+			session.delete(student);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }

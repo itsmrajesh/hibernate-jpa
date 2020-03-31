@@ -6,10 +6,16 @@ import com.nubes.orm.Student;
 
 public interface StudentDao {
 	
-	void addStudent(Student student);
+	//CRUD Operations
 	
-	Student getStudent(int regno);
+	void addStudent(Student student);  // C
 	
-	List<Student> getAllStudents();
+	Student getStudent(int regno); // R
+	
+	List<Student> getAllStudents(); // R
+	
+	void updateStudent(int regno); // U
+	
+	void deleteStudent(int regno);
 
 }

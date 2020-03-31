@@ -7,14 +7,28 @@ import com.nubes.orm.dao.StudentDaoImpl;
 
 public class Manager {
 	public static void main(String[] args) {
-		StudentDao obj = new StudentDaoImpl();
-		Student student = new Student("Rajesh", "m.rajesh@gmail.com", "BE");
-		//obj.addStudent(student);
+		StudentDao studentDao = new StudentDaoImpl();
+		Student student = new Student("Rakesh", "n.rakesh@gmail.com", "MCA");
 
-		List<Student> list = obj.getAllStudents();
+		studentDao.addStudent(student); // ADD
+
+		List<Student> list = studentDao.getAllStudents(); // Read
 
 		for (Student s : list) {
 			System.out.println(s);
 		}
+		
+		int regno = 4;
+		
+		
+		System.out.println(studentDao.getStudent(regno)); // Read
+
+		studentDao.updateStudent(regno); // Update with id
+
+		System.out.println(studentDao.getStudent(regno)); // get updated details
+
+		//studentDao.deleteStudent(regno); // Delete
+
+		System.out.println(studentDao.getAllStudents()); //get all students
 	}
 }
