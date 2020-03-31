@@ -12,6 +12,12 @@ public class Student {
 	private int regno;
 	private String name;
 	private String email;
+
+	public Student() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	private String degree;
 
 	public int getRegno() {
@@ -44,6 +50,18 @@ public class Student {
 
 	public void setDegree(String degree) {
 		this.degree = degree;
+	}
+
+	public Student(String name, String email, String degree) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.degree = degree;
+	}
+
+	@Override
+	public String toString() {
+		return "Student [regno=" + regno + ", name=" + name + ", email=" + email + ", degree=" + degree + "]";
 	}
 
 }

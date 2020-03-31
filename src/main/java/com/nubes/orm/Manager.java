@@ -2,27 +2,19 @@ package com.nubes.orm;
 
 import java.util.List;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import com.nubes.orm.dao.StudentDao;
+import com.nubes.orm.dao.StudentDaoImpl;
 
 public class Manager {
 	public static void main(String[] args) {
-		try {
+		StudentDao obj = new StudentDaoImpl();
+		Student student = new Student("Rajesh", "m.rajesh@gmail.com", "BE");
+		//obj.addStudent(student);
 
-			/*
-			 * Student student = new Student(); student.setName("Mahesh");
-			 * student.setDegree("BE"); student.setEmail("mahesh.cs@gmail.com");
-			 */
-			SessionFactory sessionFactory = HibernateUtil.sessionFactory();
-			Session session = sessionFactory.openSession();
-			List<Student> list = session.createQuery("from Student",Student.class).list();
-			list.stream().forEach(e -> {
-				System.out.println(e.getName());
-			});
+		List<Student> list = obj.getAllStudents();
 
-			session.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+		for (Student s : list) {
+			System.out.println(s);
 		}
 	}
 }
